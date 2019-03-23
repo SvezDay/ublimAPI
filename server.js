@@ -7,6 +7,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 // const chokidar = require('chokidar');
 
+const firebase = require('firebase');
+
 const AuthRoutes = require('./specialRoutes/authRoutes');
 const appRoutes = require('./api/appRoutes').routes;
 const tokenRoutes = require('./api/tokenRoutes');
