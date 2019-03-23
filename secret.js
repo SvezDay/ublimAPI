@@ -9,6 +9,15 @@ exports.driver_local = {
   //neopwd:"UblimDev78"
 };
 
+module.exports.firebase = {
+    apiKey: "AIzaSyCbTEqrmDfAQNjT9WUPJYWKprJIpNQSxho",
+    authDomain: "firetest-2e3d7.firebaseapp.com",
+    databaseURL: "https://firetest-2e3d7.firebaseio.com",
+    projectId: "firetest-2e3d7",
+    storageBucket: "firetest-2e3d7.appspot.com",
+    messagingSenderId: "1003024489068"
+};
+
 exports.auth_google = {
    "CLIENT_ID": "1035538165681-3k64kc83gcn12hibjcmp4rtqtl75isn6.apps.googleusercontent.com",
    "SECRET": "KMvX_t-0vopK-5jf4HpCARN6"

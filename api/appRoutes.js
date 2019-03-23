@@ -16,17 +16,18 @@ module.exports.routes = ()=>{
    let routes = express.Router();
    routes
 
-   // // ADMIN
+// ADMIN
       .post('/admin/add-dico', require('./admin/add-dico.ctrl').main)
-   // // USER
+// USER
+      .get('/user/get-profile', require('./user/get-profile').main)
       .delete('/user/delete-account', require('./user/delete-account.ctrl').main)
-   // TESTS
+// TESTS
 
 // DOCUMENTATION
 
    // Models defined
       .get('/model-defined/read', require('./model-defined/read.ctrl').main)
-   // DOCUMENT
+// DOCUMENT
       .post('/document/create-document', require('./document/create-document.ctrl').main)
       .post('/document/create-note', require('./document/create-note.ctrl').main)
       .get('/document/get-main', require('./document/get-main.ctrl').main)
@@ -37,11 +38,11 @@ module.exports.routes = ()=>{
       .delete('/document/delete-document-recursively', require('./document/delete-document-recursively.ctrl').main)
       .delete('/document/delete-document', require('./document/delete-document.ctrl').main)
       .delete('/document/delete-note', require('./document/delete-note.ctrl').main)
-    // ACTIVITY
+// ACTIVITY
        .get('/activity/get-main', require('./activity/get-main.ctrl').main)
        .post('/activity/create-activity', require('./activity/create-activity.ctrl').main)
        .post('/activity/create-event', require('./activity/create-event.ctrl').main)
-   // FREE
+// FREE
      .post('/free/graph-detail', require('./free/read-graph-detail.ctrl').main)
      .post('/free/create-note', require('./free/create-note.ctrl').main)
      .put('/free/update-note-value', require('./free/update-note-value.ctrl').main)
@@ -50,7 +51,7 @@ module.exports.routes = ()=>{
      .delete('/free/delete-graph', require('./free/delete-graph.ctrl').main)
      .delete('/free/delete-graph-and-descendant', require('./free/delete-graph-and-descendant.ctrl').main)
      // .delete('/free/delete-note', require('./free/delete-note.ctrl').main) // Redirect to document/delete-note
-   // DICO
+// DICO
      .post('/dico/create-item', require('./dico/create-item.ctrl').main)
      .post('/dico/create-traduction', require('./dico/create-traduction.ctrl').main)
      .post('/dico/create-definition', require('./dico/create-definition.ctrl').main)
@@ -63,7 +64,7 @@ module.exports.routes = ()=>{
      .put('/dico/update-traduction-value', require('./dico/update-value.ctrl').main)
      .put('/dico/update-traduction-label', require('./dico/update-label.ctrl').main)
      .put('/dico/update-definition', require('./dico/update-definition.ctrl').main)
-   // TREE
+// TREE
       .post('/tree/move', require('./tree/move.ctrl').main)
       .get('/tree', require('./tree/tree.ctrl').main)
 

@@ -8,10 +8,13 @@ const favicon = require('serve-favicon');
 // const chokidar = require('chokidar');
 
 const firebase = require('firebase');
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 const AuthRoutes = require('./specialRoutes/authRoutes');
 const appRoutes = require('./api/appRoutes').routes;
-const tokenRoutes = require('./api/tokenRoutes');
+//const tokenRoutes = require('./api/tokenRoutes');
+const tokenValidation = require('./_tokenValidation').tokenFn;
 // const watcher = chokidar.watch('./api');
 
 const app = express();
@@ -37,7 +40,7 @@ let io = require('./api/appRoutes').sockets(server)
 
 
 let allowCrossDomain = (req, res, next)=>{
-   res.header("Access-Control-Allow-Origin", "http://localhost:5000", "http://localhost:4200", "https://rudlabquickapp2.herokuapp.com");
+   res.header("Access-Control-Allow-Origin", "http://localhost:8100", "https://ublimpwa.firebaseapp.com");
    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token, x-access-token");
    next();
@@ -80,6 +83,10 @@ app.use(cors(corsOptions));
 // Add the error module
 // Add the scope checking
 
+// ==================================================== FIREBASE CONFIG
+
+let adm = admin.initializeApp(functions.config().firebase);
+
 
 app.get('/', function(req, res){
   res.status(200).send('Access granted -- process.env.GRAPHENEDB_BOLT_URL: ');
@@ -91,11 +98,11 @@ app.post('/manual_register', AuthRoutes.manual_register);
 // const docsRoutes = require('./api/docs');
 // app.use('/api', docsRoutes);
 
-app.use('/api', tokenRoutes.tokenDecoding, appRoutes());
+app.use('/rest', tokenValidation, appRoutes());
 
 if(process.env.NODE_ENV=='dev'){
   app.use('/dev', require('./devRoutes/routes.dev')());
-  app.use('/devUid', tokenRoutes.tokenDecoding, require('./devRoutes/methodTesting.dev')());
+  app.use('/devUid', tokenValidation, require('./devRoutes/methodTesting.dev')());
 }else{
   process.env.NODE_ENV='production';
 }
