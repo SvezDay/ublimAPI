@@ -20,7 +20,7 @@ const tokenValidation = require('./_tokenValidation').tokenFn;
 const app = express();
 const port = process.env.PORT || 3200;
 let server = app.listen(port);
-let io = require('./api/appRoutes').sockets(server)
+let io = require('./api/appRoutes').sockets(server);
 
 
 // SOCKET MANAGEMENT
@@ -49,7 +49,7 @@ let whitelist = ["http://localhost:4200", "http://localhost:5000", "https://rudl
 
 let corsOptions = {
   origin: (origin, callback)=>{
-    if(origin == undefined){
+    if(origin === undefined){
       callback(null, true) ;
     } else if(whitelist.indexOf(origin) !== -1){
       callback(null, true);
@@ -74,7 +74,7 @@ app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 
 app.use(allowCrossDomain);
-app.options('*', cors())
+app.options('*', cors());
 app.use(handleError);
 app.use(cors(corsOptions));
 
@@ -100,7 +100,7 @@ app.post('/manual_register', AuthRoutes.manual_register);
 
 app.use('/rest', tokenValidation, appRoutes());
 
-if(process.env.NODE_ENV=='dev'){
+if(process.env.NODE_ENV==='dev'){
   app.use('/dev', require('./devRoutes/routes.dev')());
   app.use('/devUid', tokenValidation, require('./devRoutes/methodTesting.dev')());
 }else{
@@ -122,5 +122,5 @@ if(process.env.NODE_ENV=='dev'){
 
 
 
-console.log("process.env.NODE_ENV", process.env.NODE_ENV)
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 console.log('API server started on: localhost:' + port);

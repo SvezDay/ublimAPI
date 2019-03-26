@@ -8,6 +8,14 @@ exports.driver_local = {
   password:"rfbrAJPuK2zp7T_4"
   //neopwd:"UblimDev78"
 };
+module.exports.graphene = {
+    host: "127.0.0.1",
+    post: 7474,
+    bolt: "bolt://hobby-medlkpiohhjegbkeamhgmkcl.dbs.graphenedb.com:24786",
+    username:"ublimapi",
+    password:"b.JUXogQfK1CIF.yInMyeG47dyjrebW"
+    //neopwd:"UblimDev78"
+};
 
 module.exports.firebase = {
     apiKey: "AIzaSyCbTEqrmDfAQNjT9WUPJYWKprJIpNQSxho",
